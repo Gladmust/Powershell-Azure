@@ -1,0 +1,33 @@
+     #Installera Modulen för Exchange online om den inte finns.
+        if(-not (Get-InstalledModule -Name ExchangeOnlineManagement)){
+            Install-Module ExchangeOnlineManagement | Out-Null}
+     #Importera Modulen för Exchange online om den inte är importerad.
+         if(-not (Get-Module -Name ExchangeOnlineManagement)){
+            Import-Module ExchangeOnlineManagement | Out-Null}
+
+
+     #Installera Modulen för AzureAD om den inte finns.
+        if(-not (Get-InstalledModule -Name AzureAD)){
+            Install-Module AzureAD | Out-Null}
+     #Importera Modulen för AzureAD om den inte är importerad.
+         if(-not (Get-Module -Name AzureAD)){
+            Import-Module AzureAD | Out-Null}
+
+    #Ger val att ansluta till Exchange Online eller Azure AD
+
+	$site=Read-Host "Välj tjänst att ansluta till (E) Exchange Online eller (A) AzureAD"
+	Switch ($site)
+	{
+		E {$Chosensite="ExchangeOnline"}
+		A {$Chosensite="AzureAD"}
+		}
+    Write-host "Loggar in mot $Chosensite"
+
+    #Startar inloggning mot valet
+
+
+if($Chosensite -like "ExchangeOnline") {
+ Connect-ExchangeOnline
+}else {
+   Connect-AzureAD
+}
