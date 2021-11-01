@@ -26,7 +26,7 @@
     #Startar inloggning mot valet
 
 
-if($Chosensite -like "ExchangeOnline") {
+if($Chosensite -match "ExchangeOnline") {
  Connect-ExchangeOnline
 }else {
    Connect-AzureAD
